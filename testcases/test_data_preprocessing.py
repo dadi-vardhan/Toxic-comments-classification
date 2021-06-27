@@ -24,6 +24,11 @@ def test_split_sent():
     p_words =   pp.split_comment(thestring)
     assert p_words  ==  ['HELLO',"worLD",'my','name','is','###','vis99']
 
+def test_remove_numbers():
+    thestring   =   "you can call me @9:00 to +41 9441xxxxx"
+    p_text  =   pp.remove_numbers(thestring)
+    assert p_text   ==  "you can call me @: to + xxxxx"
+
 def test_stem_and_lemmatize():
     thestring   =   'some people believes stemming is good.'
     p_text  =   pp.stemm_and_lemmatize(thestring)
@@ -35,7 +40,7 @@ def test_text_normalize():
                     from https://www.amazon.com/gp/aw/ref=ya_awpi?UTF8=1, it's troubling!!"
 
     p_text  =   pp.text_normalize(thestring,tokens=False)
-    assert  p_text  ==  "hello dont buy lab month phone dead dead say cheap compon pay 400 lg g4 troubl"
+    assert  p_text  ==  "hello dont buy lab month phone dead dead say cheap compon pay 400 troubl"
 
 
 
