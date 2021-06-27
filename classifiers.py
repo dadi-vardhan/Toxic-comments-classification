@@ -25,23 +25,45 @@ class Logistic_Regression_Classifier():
         self.pred_labels    =   None
 
     def vectorizer(self,data_train,data_test):
+        """ perform tfidf vectorization and transform texts to one-hot-encoding.
+
+        Args:
+            data_train [strs]: training data
+            data_test  [strs]: testing data
+        """
         self.TFIDF_Vectorizer.fit_transform(data_train)
         self.train_tfidf    =   self.TFIDF_Vectorizer.transform(data_train)
         self.test_tfidf =   self.TFIDF_Vectorizer.transform(data_test)
     
     def fit_model(self,labels):
+        """fit the model to the training data.
+
+        Args:
+            labels ([type]): [description]
+        """
         self.LR_Classifier.fit(self.train_tfidf,labels)
 
     def predict_labels(self):
+        """predict the labels.
+        """
         self.y_labels   =   self.LR_Classifier.predict(self.test_tfidf)
 
-    def evaluate_model(self):
+    def evaluate_model(self,labels):
+        """Finds accuracy, roc_auc_score, and logloss.
+
+        Args:
+            labels ([ints]): test labels
+
+        Returns:
+            accuracy: float : accuracy of the model.
+            auc: float: 
+        """
         self.pred_labels    =   self.LR_Classifier.predict(self.test_tfidf).todense()
         y_pred  =   self.LR_Classifier.predict_proba(self.test_tfidf).todense()
-        accuracy    =   np.mean([accuracy_score(self.test_data.iloc[:,i], \
+        accuracy    =   np.mean([accuracy_score(labels.iloc[:,i], \
                                                 self.pred_labels[:,i]) for i in range (6)])
-        auc =   np.mean([roc_auc_score(self.test_data.iloc[:,i], y_pred[:,i]) for i in range (6)])
-        logloss =   np.mean([log_loss(self.test_data.iloc[:,i], y_pred[:,i]) for i in range(6)])
+        auc =   np.mean([roc_auc_score(labels.iloc[:,i], y_pred[:,i]) for i in range (6)])
+        logloss =   np.mean([log_loss(labels.iloc[:,i], y_pred[:,i]) for i in range(6)])
         return  accuracy,auc,logloss 
 
 class LSTM_Classifier():

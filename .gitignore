@@ -1,6 +1,7 @@
 # Ignore the data directory
 data/
 __pycache__/
+lstm_toxic_cmnts/
 
 # Ignore Logs
 logs
@@ -14,4 +15,5 @@ logs
 .vscode/
 *.sw*
 
-
+#ignore pkl
+*.pkl
