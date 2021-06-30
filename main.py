@@ -9,11 +9,6 @@ Y_TEST_PATH =   "pkls/y_test.pkl"
 LR_VECTORIZER_PATH   =   "pkls/LR_vectorizer.pkl"
 LR_CLASSIFIER_PATH  =   "pkls/LR.pkl"
 
-# lstm_model = LSTM_Classifier(X_TRAIN_PATH,X_TEST_PATH,\
-#                                 Y_TRAIN_PATH,Y_TEST_PATH)
-
-# lstm_model.load_model("lstm_toxic_cmnts")
-
 with open(LR_VECTORIZER_PATH, 'rb') as fin:
   vectorizer    =   pickle.load(fin)
 
