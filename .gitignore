@@ -2,6 +2,8 @@
 data/
 __pycache__/
 lstm_toxic_cmnts/
+lstm_toxic_cmnts_os/
+lstm_toxic_cmnts_us/
 
 # Ignore Logs
 logs
