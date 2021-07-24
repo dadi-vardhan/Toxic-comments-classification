@@ -79,7 +79,5 @@
 6. Regex - 2.2.1
 7. scikit-multilearn-0.2.0
 
-
-
 # To run
 python main.py
